@@ -1,0 +1,41 @@
+.landing {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+.landingImg{
+    width: 100%;
+    height: 100%;
+    left: 25%;
+    object-fit: cover;
+    position: absolute;
+}
+.landingTxt {
+    position : absolute;
+    top: 8%;
+    font-size: 1.3rem;
+    padding: 3%;
+}
+
+.landingBtn {
+    background-color: yellow;
+    position: absolute;
+    bottom: 25%;
+    left : 2.5%;
+    height: 8%;
+    width: 20%;
+}
+
+.landingPgp {
+    width: 20%;
+    position: absolute;
+    top: 25%;
+    padding: 3.5%;
+}
+
+.landingPgp2 {
+    width: 20%;
+    position: absolute;
+    top: 40%;
+    padding: 3.5%;
+}
