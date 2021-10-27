@@ -19,7 +19,7 @@ const apiRecipes= async () => {
             vegan: r.vegan,
             glutenFree: r.glutenFree,
             dairyFree: r.dairyFree,
-            score: r.poonacularScore,
+            score: r.spoonacularScore,
             healthy: r.healthScore,
             image: r.image,
             resume: r.summary,
@@ -111,7 +111,6 @@ En una primera instancia, cuando no exista ninguno, deberán precargar la base d
 router.get('/types', async (req, res) => {
    const apiDiets = ["Gluten Free", "Ketogenic", "Vegetarian", "Lacto-Vegetarian", "Ovo-Vegetarian",
                      "Vegan", "Pescetarian", "Paleo", "Primal", "Low FODMAP", "Whole30"];
-console.log(apiDiets.map((d)=>d))
 
 for (let x= 0; x < apiDiets.length; x++) {
 
