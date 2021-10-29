@@ -19,3 +19,22 @@ export function getDiets() {
     });
   };
 }
+
+export function postRecipes(){
+  return async function(dispatch){
+    const response = await axios.post("http://localhost:3001/recipe");
+    dispatch({
+      type: "POST_RECIPES",
+      payload: response.data,
+    });
+  };
+}
+
+export function filterByDiets(payload){
+
+  return {
+    type: "FILTER_BY_DIET",
+    payload
+  }
+}
+
