@@ -1,9 +1,9 @@
 import React from "react";
 
-export default function Paginate({ recipesPerPage, allRecipes, paginate }) {
+export default function Paginate({ recipesPerPage, filteredRecipes, paginate }) {
   const pageNumbers = [];
 
-  for (let x = 1; x <= Math.ceil(allRecipes / recipesPerPage); x++) {
+  for (let x = 1; x <= Math.ceil(filteredRecipes / recipesPerPage); x++) {
     pageNumbers.push(x);
   }
 

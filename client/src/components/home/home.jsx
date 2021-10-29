@@ -15,12 +15,13 @@ export default function Home() {
 
   const allRecipes = useSelector((state) => state.recipes);
   const allDiets = useSelector((state) => state.diets);
+  const filteredRecipes = useSelector((state)=> state.filteredRecipes);
 
 const [thisPage, setThisPage] = useState(1);
 const [recipesPerPage, setRecipesPerPage] = useState(2);
 const LastRecipe = thisPage * recipesPerPage;
 const FirstRecipe = LastRecipe - recipesPerPage;
-const currentRecipes = allRecipes.slice(FirstRecipe, LastRecipe );
+const currentRecipes = filteredRecipes.slice(FirstRecipe, LastRecipe );
 
 const paginate = (pageNumber) => {
   setThisPage(pageNumber);
@@ -34,6 +35,9 @@ const paginate = (pageNumber) => {
   // }
 
   function handleFilterChange(e) {
+    if(e.target.value === "all"){
+      dispatch(getFoods());
+    }
     dispatch(filterByDiets(e.target.value));
   }
 
@@ -56,13 +60,15 @@ const paginate = (pageNumber) => {
           <option value="desc">Descendant</option>
         </select>
         <select onChange={handleFilterChange}>
+          <option value="all">All</option>
+          
           {allDiets?.map((diet) => {
             return <option value={diet.name} >{diet.name}</option>;
           })}
         </select>
         <Paginate
         recipesPerPage={recipesPerPage}
-        allRecipes={allRecipes.length}
+        filteredRecipes={filteredRecipes.length}
         paginate={paginate}
         />
       </div>

@@ -1,6 +1,7 @@
 const initialState = {
   recipes: [],
   diets: [],
+  filteredRecipes: [],
 };
 export default function rootReducer(state = initialState, action) {
   switch (action.type) {
@@ -22,13 +23,16 @@ export default function rootReducer(state = initialState, action) {
       case "FILTER_BY_DIET":
         const allRecipes= state.recipes;
         const filteredRecipes = allRecipes.filter(recipe => recipe.diets.includes(action.payload));
-        console.log(action.payload)
-        console.log(allRecipes)
-        console.log(filteredRecipes)
+        if (action.payload === "all"){
+          return {
+            ...state,
+            filteredRecipes: allRecipes,
+          };
+        }else{
         return {
         ...state,
-        recipes: filteredRecipes,
-      }
+        filteredRecipes: filteredRecipes,
+      }}
     default:
       return state;
   }

@@ -109,8 +109,8 @@ Obtener todos los tipos de dieta posibles
 En una primera instancia, cuando no exista ninguno, deberán precargar la base de datos con los tipos de datos indicados por spoonacular acá*/
 
 router.get('/types', async (req, res) => {
-   const apiDiets = ["Gluten Free", "Ketogenic", "Vegetarian", "Lacto-Vegetarian", "Ovo-Vegetarian",
-                     "vegan", "Pescetarian", "Paleo", "Primal", "Low FODMAP", "Whole30"];
+   const apiDiets = ["gluten free","dairy free", "ketogenic", "vegetarian", "lacto vegetarian","lacto ovo vegetarian", "ovo vegetarian",
+                     "vegan", "pescetarian", "paleolithic", "primal", "low FODMAP", "whole30"];
 
 for (let x= 0; x < apiDiets.length; x++) {
 
