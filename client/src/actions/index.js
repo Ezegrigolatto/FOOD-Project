@@ -20,13 +20,24 @@ export function getDiets() {
   };
 }
 
-export function postRecipes(){
-  return async function(dispatch){
-    const response = await axios.post("http://localhost:3001/recipe");
+export function searchByName(payload){
+  return async function (dispatch) {
+    const response = await axios.get(`http://localhost:3001/recipes?name=${payload}`);
     dispatch({
-      type: "POST_RECIPES",
+      type: "SEARCH_BY_NAME",
       payload: response.data,
     });
+  };
+}
+
+
+export function postRecipes(payload){
+  return async function(dispatch){
+    const response = await axios.post("http://localhost:3001/recipe", payload);
+    dispatch({
+      type: "POST_RECIPES",
+    })
+    return response
   };
 }
 
@@ -34,6 +45,13 @@ export function filterByDiets(payload){
 
   return {
     type: "FILTER_BY_DIET",
+    payload
+  }
+}
+
+export function orderAlphabetically(payload){
+  return {
+    type: "ORDER_ALPHABETICALLY",
     payload
   }
 }

@@ -1,12 +1,11 @@
-import React from 'react';
-
-export default function Card({name, diets, image}){
-    return (
-        <div>
-            
-            <h3>{name}</h3>
-            <img src={image} alt="sin imagen" width="200px" height="250px"/>
-            <h5>{diets}</h5>
-        </div>
-    )
+import React from "react";
+import "./card.css";
+export default function Card({ name, diets, image }) {
+  return (
+    <div className="card">
+      <h3 className="name">{name}</h3>
+      <img className="img" src={image} alt="sin imagen" />
+      <h5 className="diet">{diets}</h5>
+    </div>
+  );
 }

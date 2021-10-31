@@ -1,0 +1,11 @@
+.button {
+    background-color: yellow;
+    border-radius: 100%;
+    margin-left: 10px;
+}
+
+.paginate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

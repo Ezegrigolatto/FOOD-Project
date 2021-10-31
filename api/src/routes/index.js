@@ -128,13 +128,10 @@ Recibe los datos recolectados desde el formulario controlado de la ruta de creac
 Crea una receta en la base de datos*/
 
 router.post('/recipe', (req, res) => {
-const {name, image, resume }= req.body;
+const {name, score, resume, steps, healthy, diets}= req.body;
 
-if (!(name && image && resume)){
-    res.send("debe ingresar todos los parametros")
-}else{
-    Recipe.create({name: name, image: image, resume: resume}) 
-}
+Recipe.create({name: name, resume: resume, score: score, healthy: healthy, steps: steps, diets: diets}) 
+
 
 res.send("su receta se creó con exito")
 })

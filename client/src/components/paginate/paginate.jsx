@@ -1,4 +1,5 @@
 import React from "react";
+import "./paginate.css";
 
 export default function Paginate({ recipesPerPage, filteredRecipes, paginate }) {
   const pageNumbers = [];
@@ -8,14 +9,14 @@ export default function Paginate({ recipesPerPage, filteredRecipes, paginate }) 
   }
 
   return (
-    <nav>
-      <ul>
+    <nav className="paginate">
+      
         {pageNumbers.map((n) => (
-          <li>
-            <a onClick={() => paginate(n)}>{n}</a>
-          </li>
+          <button className="button" onClick={() => paginate(n)}>
+            {n} </button>
+        
         ))}
-      </ul>
+      
     </nav>
   );
 }
