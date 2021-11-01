@@ -21,17 +21,25 @@ const apiRecipes= async () => {
             dairyFree: r.dairyFree,
             score: r.spoonacularScore,
             healthy: r.healthScore,
-            image: r.image,
+            image: r.image, 
             resume: r.summary,
             rId: r.id,
-            diets: r.diets.map((rec)=>{return rec}),
+            diets: r.diets.map((rec)=>{return {name:rec}}),
         }
     })
     return oneRecipeApi
 }
 // recetas de la database
 const myRecipes= async() => {
-    return await Recipe.findAll({include:Diet})
+    return await Recipe.findAll({
+        include:{
+            model: Diet,
+            attributes: ['name'],
+            through: {
+                attributes: []
+            },
+        }
+    })      
 }
 
 // dietas de la database
@@ -48,9 +56,6 @@ const reqAllInfo = async() => {
 }
 
 
-/*[ ] GET /recipes?name="...":
-Obtener un listado de las recetas que contengan la palabra ingresada como query parameter
-Si no existe ninguna receta mostrar un mensaje adecuado*/
 
 router.get('/recipes', async (req, res) => {
     const {name} = req.query; //llega por query
@@ -72,11 +77,6 @@ router.get('/recipes', async (req, res) => {
 })
 
 
-
-/*[ ] GET /recipes/{idReceta}:
-Obtener el detalle de una receta en particular
-Debe traer solo los datos pedidos en la ruta de detalle de receta
-Incluir los tipos de dieta asociados*/
 
 router.get('/recipes/:id',async (req, res) => {
 const {id} = req.params;
@@ -122,17 +122,11 @@ for (let x= 0; x < apiDiets.length; x++) {
 
 
 
-
-/*[ ] POST /recipe:
-Recibe los datos recolectados desde el formulario controlado de la ruta de creación de recetas por body
-Crea una receta en la base de datos*/
-
-router.post('/recipe', (req, res) => {
+router.post ('/recipe', async (req, res) => {
 const {name, score, resume, steps, healthy, diets}= req.body;
-
-Recipe.create({name: name, resume: resume, score: score, healthy: healthy, steps: steps, diets: diets}) 
-
-
+let receta=await Recipe.create({name: name, resume: resume, score: score, healthy: healthy, steps: steps, recipediets: diets}) 
+const diet = await Diet.findAll({where:{name: diets}})
+receta.addDiets(diet)
 res.send("su receta se creó con exito")
 })
 module.exports = router;

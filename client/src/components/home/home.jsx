@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getFoods, getDiets, filterByDiets, orderAlphabetically} from "../../actions";
+import { getFoods, getDiets, filterByDiets, orderRecipes} from "../../actions";
 import { Link } from "react-router-dom";
 import SearchBar from "../searchbar/searchbar.jsx";
 import Card from "../card/card.jsx";
@@ -11,7 +11,6 @@ import "../card/card.css";
 
 export default function Home() {
   const dispatch = useDispatch();
-
   const allRecipes = useSelector((state) => state.recipes);
   const allDiets = useSelector((state) => state.diets);
   const filteredRecipes = useSelector((state) => state.filteredRecipes);
@@ -40,7 +39,7 @@ export default function Home() {
   }
 
   function handleSort(e) {
-    dispatch(orderAlphabetically(e.target.value));
+    dispatch(orderRecipes(e.target.value));
     setSorted(currentRecipes);
   }
 
@@ -68,18 +67,21 @@ export default function Home() {
       </div>
 
       <div className="cardContainer">
+
         {currentRecipes.map((recipe) => {
           return (
+            
             <div>
-              <Link to={"/home/" + recipe.id}>
+              <Link to={"/home/" + recipe.rId}>
                 <Card
                   name={recipe.name}
                   image={recipe.image}
                   diets={recipe.diets}
+                  id = {recipe.rId}
                 />
               </Link>
             </div>
-          );
+          )
         })}
       </div>
 

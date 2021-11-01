@@ -4,7 +4,7 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('recipe', {
-    id: {
+    rId: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       allowNull: false,
@@ -32,8 +32,8 @@ module.exports = (sequelize) => {
     },
     image:{
       type: DataTypes.STRING,
+      defaultValue: 'https://valenciagastronomica.com/wp-content/uploads/2015/12/recipe-575434_960_720.png',
       allowNull:true
     }
-    
   });
 };

@@ -49,9 +49,16 @@ export function filterByDiets(payload){
   }
 }
 
-export function orderAlphabetically(payload){
+export function orderRecipes(payload){
   return {
-    type: "ORDER_ALPHABETICALLY",
+    type: "ORDER_RECIPES",
+    payload
+  }
+}
+
+export function getDetails(payload){
+  return {
+    type: "GET_DETAILS",
     payload
   }
 }

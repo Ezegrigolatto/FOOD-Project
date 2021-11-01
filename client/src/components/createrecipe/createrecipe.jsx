@@ -29,6 +29,7 @@ function handleChange(e) {
 }
 
     function handleSubmit(e) {
+        e.preventDefault();
         dispatch(postRecipes(recipe));
     }
 
@@ -64,7 +65,7 @@ function handleCheckbox(e) {
 
            <div>
                <label>Resume</label>
-                <input type="text" name="resume" value={recipe.resume} onChange={handleChange}/>
+                <input type="textarea" name="resume" value={recipe.resume} onChange={handleChange}/>
            </div>
 
            <div>

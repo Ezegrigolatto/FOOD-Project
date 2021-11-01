@@ -1,9 +1,10 @@
-import { orderAlphabetically } from "../actions";
+import { orderRecipes } from "../actions";
 
 const initialState = {
   recipes: [],
   diets: [],
   filteredRecipes: [],
+  details: []
 };
 export default function rootReducer(state = initialState, action) {
   switch (action.type) {
@@ -31,22 +32,25 @@ export default function rootReducer(state = initialState, action) {
       };
     case "FILTER_BY_DIET":
       const allRecipes = state.recipes;
-      const filteredRecipes = allRecipes.filter((recipe) =>
-        recipe.diets.includes(action.payload)
-      );
+
+      
       if (action.payload === "all") {
         return {
           ...state,
           filteredRecipes: allRecipes,
-        };
-      } else {
+        }}else{
+        const filteredRecipes = allRecipes.filter((recipe) =>{
+          return recipe.diets.find((recipe)=>{
+            return recipe.name === action.payload
+          })
+        })
         return {
           ...state,
           filteredRecipes: filteredRecipes,
-        };
-      }
-
-    case "ORDER_ALPHABETICALLY":
+        };}
+      
+    
+    case "ORDER_RECIPES":
       let ordered = state.filteredRecipes;
 
       if (action.payload === "Alpasc") {
@@ -98,7 +102,11 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         filteredRecipes: ordered,
       };
-
+      case "GET_DETAILS":
+      return {
+        ...state,
+        details: action.payload, 
+      }; 
     default:
       return state;
   }
