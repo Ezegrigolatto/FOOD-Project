@@ -1,0 +1,97 @@
+@font-face {
+    font-family: GrandHotel;
+    src: url('../../assets/GrandHotel-Regular.otf');
+}
+
+.imgCard{
+    border-radius:20px;
+    width: 35rem;
+    height: 30rem;
+    margin-left:2rem
+}
+.title{
+    font-family: GrandHotel;
+    font-size:4rem;
+    display: flex;
+    justify-content: center;
+    margin-left:2rem;
+    margin-top:2rem;
+}
+.score{
+    width: 5rem;
+    height: 3rem;
+    position: relative;
+    top: 0.5rem;
+    left: 0.7rem;
+}
+
+.healthscore{
+    width: 4rem;
+    height: 4rem;
+    position: relative;
+    left: 0.7rem;
+    top: 1.3rem;
+}
+.scores{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-around;
+}
+
+.resume{
+    font-family : Arial, Helvetica, sans-serif;
+    font-size: 1.1rem;
+}
+
+.diets{
+    font-family: GrandHotel;
+    font-size:2rem;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    height: 9rem;
+    position: relative;
+    top: 2rem;
+}
+
+.arrdiets{
+    position: relative;
+    top: -4rem;
+}
+.stepstitle{
+    font-family: GrandHotel;
+    font-size:3rem;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+}
+.steps{
+    font-size:1.2rem;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    height: 9rem;
+    position: relative;
+    font-family : Arial, Helvetica, sans-serif
+}
+
+.resumeScoreHealthy{
+    background-color: rgba(255, 255, 255, 0.856);
+    color: rgb(0, 0, 0);
+    padding: 1.5rem;
+    border-radius:20px;
+    margin-left: 2rem;
+    width:42rem;
+    height: 27rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.imgResumeContainer{
+    display:flex;
+    flex-direction:row
+}

@@ -1,9 +1,19 @@
 import React from "react";
+import { useEffect } from "react";
 import "./landingPage.css";
 import banquete from "../../assets/banquete.jpg"
 import {Link} from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { getDiets } from "../../actions";
+
 
 export default function LandingPage({ imageSrc }) {
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+    dispatch(getDiets());
+  }, []);
+
   return (
     <div className="landing">
       <img src={banquete} alt="landing" className="landingImg" />
@@ -16,3 +26,4 @@ export default function LandingPage({ imageSrc }) {
     </div>
   );
 }
+

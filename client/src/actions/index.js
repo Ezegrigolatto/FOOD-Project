@@ -3,6 +3,7 @@ import axios from "axios";
 export function getFoods() {
   return async function (dispatch) {
     const response = await axios.get("http://localhost:3001/recipes");
+    
     dispatch({
       type: "GET_RECIPES",
       payload: response.data,
@@ -13,6 +14,7 @@ export function getFoods() {
 export function getDiets() {
   return async function (dispatch) {
     const response = await axios.get("http://localhost:3001/types");
+    console.log(response.data);
     dispatch({
       type: "GET_DIETS",
       payload: response.data,
@@ -56,9 +58,13 @@ export function orderRecipes(payload){
   }
 }
 
+
 export function getDetails(payload){
-  return {
-    type: "GET_DETAILS",
-    payload
-  }
+  return async function (dispatch) {
+    const response= await axios.get(`http://localhost:3001/recipes/${payload}`)
+    dispatch({
+      type: "GET_DETAILS",
+      payload: response.data,
+    });
+  };
 }

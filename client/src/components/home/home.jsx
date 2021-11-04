@@ -5,9 +5,10 @@ import { getFoods, getDiets, filterByDiets, orderRecipes} from "../../actions";
 import { Link } from "react-router-dom";
 import SearchBar from "../searchbar/searchbar.jsx";
 import Card from "../card/card.jsx";
-import Paginate from "../paginate/paginate.jsx";
 import "../card/card.css";
-
+import Paginate from "../paginate/paginate.jsx";
+import "./home.css";
+import header from "../../assets/header.jpg"
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -16,15 +17,15 @@ export default function Home() {
   const filteredRecipes = useSelector((state) => state.filteredRecipes);
 
   const [thisPage, setThisPage] = useState(1);
-  const [recipesPerPage, setRecipesPerPage] = useState(6);
+  const [recipesPerPage, setRecipesPerPage] = useState(9);
   const LastRecipe = thisPage * recipesPerPage;
   const FirstRecipe = LastRecipe - recipesPerPage;
   const currentRecipes = filteredRecipes.slice(FirstRecipe, LastRecipe);
   const [sorted, setSorted] = useState(currentRecipes);
 
   useEffect(() => {
-    dispatch(getDiets());
     dispatch(getFoods());
+    dispatch(getDiets());
   }, []);
 
   const paginate = (pageNumber) => {
@@ -32,11 +33,13 @@ export default function Home() {
   };
 
   function handleFilterChange(e) {
+    setThisPage(1);
     if (e.target.value === "all") {
       dispatch(getFoods());
-    }
-    dispatch(filterByDiets(e.target.value));
+    }else{
+      dispatch(filterByDiets(e.target.value));
   }
+}
 
   function handleSort(e) {
     dispatch(orderRecipes(e.target.value));
@@ -44,10 +47,13 @@ export default function Home() {
   }
 
   return (
-    <div>
+    <div className="container">
+      <img src={header} height="200rem" width="1500rem"/>
       <SearchBar />
-      <h1>Recipe's Page</h1>
-
+     <br></br> 
+     <br></br> 
+     <br></br> 
+     <br></br> 
       <div>
         <select onChange={handleSort}>
           <option>None</option>
@@ -60,7 +66,7 @@ export default function Home() {
         <select onChange={handleFilterChange}>
           <option value="all">All</option>
 
-          {allDiets?.map((diet) => {
+          {allDiets.map((diet) => {
             return <option value={diet.name}>{diet.name}</option>;
           })}
         </select>

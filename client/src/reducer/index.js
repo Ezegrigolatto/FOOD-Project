@@ -26,7 +26,6 @@ export default function rootReducer(state = initialState, action) {
          filteredRecipes: action.payload, 
        } 
     case "POST_RECIPES":
-      alert ("Recipe created succesfully")
       return {
         ...state,
       };
@@ -103,11 +102,11 @@ export default function rootReducer(state = initialState, action) {
         filteredRecipes: ordered,
       };
       case "GET_DETAILS":
-      return {
-        ...state,
-        details: action.payload, 
-      }; 
-    default:
-      return state;
+        return {
+          ...state,
+          details: action.payload, 
+        }; 
+      default:
+        return state;
+    }
   }
-}
