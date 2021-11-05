@@ -49,6 +49,7 @@ export default function Home() {
   return (
     <div className="container">
       <img src={header} height="200rem" width="1500rem"/>
+      <Link className="create"  to="/recipe">Create recipe</Link>
       <SearchBar />
      <br></br> 
      <br></br> 
@@ -95,6 +96,7 @@ export default function Home() {
         recipesPerPage={recipesPerPage}
         filteredRecipes={filteredRecipes.length}
         paginate={paginate}
+        thisPage={thisPage}
       />
     </div>
   );

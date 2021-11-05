@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { postRecipes, getDiets } from "../../actions";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import "./createrecipe.css";
+import Circulo from "../../assets/circulo.png"
 
 export default function CreateRecipe() {
   const dispatch = useDispatch();
@@ -78,35 +80,40 @@ export default function CreateRecipe() {
   }
 
   return (
-    <div>
-      <Link to="/home">Go back</Link>
+    <div className="container">
+      <img className="circle" src={Circulo}></img>
+      <Link to="/home" className="back">Go back</Link>
+
+      <div className="creatingCard">
       <h1>Create Recipe</h1>
 
       <form>
-        <div>
+        <div className="inputs">
           <label>Name</label>
           <input
             type="text"
             placeholder="Recipe name"
+            autocomplete="off"
             name="name"
             value={recipe.name}
             onChange={handleNameChange}
           />
         </div>
 
-        <div>
+        <div className="inputs">
           <label>Resume</label>
           <input
             type="text"
             placeholder="Resume or summary"
+            autocomplete="off"
             name="resume"
             value={recipe.resume}
             onChange={handleChange}
           />
         </div>
 
-        <div>
-          <label>Score</label>
+        <div className="createscores">
+          <label>Score:</label>
           <input
             type="number"
             min="1"
@@ -115,10 +122,10 @@ export default function CreateRecipe() {
             value={recipe.score}
             onChange={handleChange}
           />
-        </div>
+        
 
-        <div>
-          <label>Healthy</label>
+        
+          <label>Healthy:</label>
           <input
             type="number"
             min="1"
@@ -129,23 +136,24 @@ export default function CreateRecipe() {
           />
         </div>
 
-        <div>
+        <div className="inputs">
           <label>Steps</label>
           <input
-            type="text"
+            type="textarea"
             placeholder="Recipe steps"
+            autocomplete="off"
             name="steps"
             value={recipe.steps}
             onChange={handleChange}
           />
         </div>
 
-        <div>
-          <h3>Diets</h3>
-          <div>
+          <h2 className="cboxtitle">Diets</h2>
+        <div className="cbox">
+          
             {allDiets.map((d) => (
               <label>
-                <input
+                <input 
                   onChange={handleCheckbox}
                   type="checkbox"
                   name={d.name}
@@ -154,14 +162,15 @@ export default function CreateRecipe() {
                 {d.name}
               </label>
             ))}
-          </div>
         </div>
-
+        <div className="createbuttons">
         <button type="submit" onClick={handleSubmit}>
           Create!
         </button>
-      </form>
       <button onClick={handleReload}>Discard </button>
+      </div>
+      </form>
+      </div>
     </div>
   );
 }

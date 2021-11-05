@@ -1,0 +1,104 @@
+.back {
+  background-color: rgb(253, 253, 158);
+  color: rgb(0, 0, 0);
+  border-radius: 5px;
+  padding: 4px;
+  font-size: 25px;
+  cursor: pointer;
+  position: absolute;
+  top: 4rem;
+  left: 4rem;
+  text-decoration: none;
+  font-family: GrandHotel;
+}
+
+.circle {
+  width: 7rem;
+  height: 7rem;
+  position: absolute;
+  left: 2.7rem;
+  top: 2rem;
+}
+
+.creatingCard {
+  width: 50rem;
+  height: 40rem;
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #2f3640e5;
+  border-radius: 10px;
+  background-image: url("../../assets/backgroundCreate.jpg");
+  background-size: cover;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.007);
+}
+
+.inputs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: rgb(253, 253, 158);
+}
+
+.inputs input {
+  width: 20rem;
+  height: 3rem;
+  box-shadow: 0 4px 8px 0 rgb(0, 0, 0), 0 6px 20px 0 rgb(0, 0, 0);
+}
+
+.createscores {
+  display: flex;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 0.7rem;
+  color: rgb(253, 253, 158);
+}
+
+.createscores input {
+  width: 2rem;
+  box-shadow: 0 4px 8px 0 rgb(0, 0, 0), 0 6px 20px 0 rgb(0, 0, 0);
+}
+
+.createbuttons {
+  position: relative;
+  top: -1rem;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.createbuttons button {
+  background-color: rgb(253, 253, 158);
+  color: rgb(0, 0, 0);
+  border-radius: 5px;
+  font-size: 25px;
+  cursor: pointer;
+  font-family: GrandHotel;
+}
+
+.cboxtitle {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: -0.5rem;
+  color:rgb(253, 253, 158);
+}
+
+.cbox {
+  background-color: white;
+  border-radius: 10px;
+  color: black;
+  display: flex;
+  height: 10rem;
+  flex-wrap: wrap;
+  align-content: space-between;
+  flex-direction: column;
+  position: relative;
+  top: -1.5rem;
+  box-shadow: 0 4px 8px 0 rgb(0, 0, 0), 0 6px 20px 0 rgb(0, 0, 0);
+}

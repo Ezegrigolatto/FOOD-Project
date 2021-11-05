@@ -9,7 +9,7 @@ const router = Router();
 
 const apiRecipes = async () => {
   const dirURL = await axios.get(
-    `https://api.spoonacular.com/recipes/complexSearch?number=10&&apiKey=${APIKEY}&addRecipeInformation=true`
+    `https://api.spoonacular.com/recipes/complexSearch?number=100&&apiKey=${APIKEY}&addRecipeInformation=true`
   );
   const oneRecipeApi = await dirURL.data.results.map((r) => {
     return {

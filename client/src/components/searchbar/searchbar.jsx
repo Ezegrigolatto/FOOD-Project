@@ -13,25 +13,23 @@ export default function SearchBar() {
   function handleSearch(e) {
     e.preventDefault();
     setInputValue(e.target.value);
-    console.log("input value que sale de la busqueda "+inputValue);
   }
   
   
   
   function handleClick(e) {
     e.preventDefault();
-    console.log("input value que llega al boton " + inputValue);
     if (inputValue !== "") {
       dispatch(searchByName(inputValue));
     } else {
       dispatch(getFoods());
     }
-    // inputValue? dispatch(searchByName(inputValue)): dispatch(getFoods());
     document.form.reset()
     }
 
   return (
-    <form name="form">
+    <div className="form">
+    <form  name="form">
       <div className="searchBox">
         <input
           className="searchInput"
@@ -47,7 +45,7 @@ export default function SearchBar() {
           <i className="material-icons"> <img width="16px" height="16px"src={lupa}/> </i>
         </button>
       </div>
-      <Link className="create"  to="/recipe">Create recipe</Link>
     </form>
+    </div>
   );
 }

@@ -14,6 +14,8 @@ import F from "../../assets/84a100.jpg";
 import LH from "../../assets/lowhealthy.png";
 import MH from "../../assets/mediumhealthy.png";
 import HH from "../../assets/highhealthy.png";
+import Circulo from "../../assets/circulo.png"
+
 
 export default function Detail() {
   const dispatch = useDispatch();
@@ -53,7 +55,8 @@ export default function Detail() {
   return (
     
     <div className="container">
-      <Link to="/home">Go back</Link>
+      <img className="circle" src={Circulo}></img>
+      <Link className="back" to="/home">Go back</Link>
       
       {
         <div>
@@ -80,11 +83,13 @@ export default function Detail() {
 
           </div>
           <h4 className="stepstitle"> Steps: </h4>
+          <div className="stepscontainer">
           <p className="steps"
             dangerouslySetInnerHTML={{
               __html: `${recipeDetails.instructions}`,
             }}
           ></p>
+          </div>
         </div>
       }
     </div>
