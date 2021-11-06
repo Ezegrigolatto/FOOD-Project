@@ -56,7 +56,7 @@ router.get("/recipes", async (req, res) => {
   let allRecipes = await reqAllInfo();
 
   //si no llega nada por query, mando todas las recetas; sinó mando la que contenga el name
-  if (!name) {
+  try {if (!name) {
     res.send(allRecipes);
   } else {
     let recipeName = await allRecipes.filter((r) =>
@@ -67,8 +67,11 @@ router.get("/recipes", async (req, res) => {
       res.send("no se encontraron resultados");
     } else {
       //de lo contrario, muestro las respuestas
-      res.send(recipeName);
+      res.status(200).send(recipeName);
     }
+  }
+} catch (error) {
+    res.status(404).send(error);
   }
 });
 
