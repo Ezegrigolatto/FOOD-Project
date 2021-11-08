@@ -54,7 +54,8 @@ const reqAllInfo = async () => {
   return allData;
 };
 
-router.get("/recipes", async (req, res, next) => {
+
+/*router.get("/recipes", async (req, res, next) => {
   try {
     const { name } = req.query; //llega por query
     let allRecipes = await reqAllInfo();
@@ -71,10 +72,32 @@ router.get("/recipes", async (req, res, next) => {
       } else {
         //de lo contrario, muestro las respuestas
         res.send(recipeName);
-      }
+      }*/
+
+router.get("/recipes", async (req, res) => {
+  const { name } = req.query; //llega por query
+  let allRecipes = await reqAllInfo();
+
+  //si no llega nada por query, mando todas las recetas; sinó mando la que contenga el name
+  try {if (!name) {
+    res.send(allRecipes);
+  } else {
+    let recipeName = await allRecipes.filter((r) =>
+      r.name.toLowerCase().includes(name.toLowerCase())
+    );
+    //si no encontro resultados, mando este error
+    if (recipeName.length === 0) {
+      res.send("no se encontraron resultados");
+    } else {
+      //de lo contrario, muestro las respuestas
+      res.status(200).send(recipeName);
+
     }
   } catch (error) {
     next(error);
+  }
+} catch (error) {
+    res.status(404).send(error);
   }
 });
 
