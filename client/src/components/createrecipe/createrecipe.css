@@ -12,6 +12,10 @@
   font-family: GrandHotel;
 }
 
+.createTitle{
+  margin-top: 4rem
+}
+
 .circle {
   width: 7rem;
   height: 7rem;
@@ -23,7 +27,7 @@
 .creatingCard {
   width: 50rem;
   height: 40rem;
-  margin-top: 4rem;
+  margin-top: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -32,7 +36,7 @@
   border-radius: 10px;
   background-image: url("../../assets/backgroundCreate.jpg");
   background-size: cover;
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.007);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.7);
 }
 
 .inputs {
@@ -72,7 +76,7 @@
   justify-content: space-evenly;
   align-items: center;
 }
-.createbuttons button {
+.createbutton {
   background-color: rgb(253, 253, 158);
   color: rgb(0, 0, 0);
   border-radius: 5px;

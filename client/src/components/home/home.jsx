@@ -10,6 +10,7 @@ import Paginate from "../paginate/paginate.jsx";
 import "./home.css";
 import header from "../../assets/header.jpg"
 
+
 export default function Home() {
   const dispatch = useDispatch();
   const allRecipes = useSelector((state) => state.recipes);
@@ -46,24 +47,48 @@ export default function Home() {
     setSorted(currentRecipes);
   }
 
+  function handleRender(){
+    if (currentRecipes.length > 0) {
+      return( 
+
+        <div className="cardContainer">
+        {currentRecipes.map((recipe) => {
+          return (
+              <Link to={"/home/" + recipe.rId}>
+                <Card
+                  name={recipe.name}
+                  image={recipe.image}
+                  diets={recipe.diets}
+                  id = {recipe.rId}
+                />
+              </Link>
+          )
+        })
+       } </div> 
+      )
+      }else{
+        return(
+          <h2 className="norecipes">There are no recipes to show.</h2>
+        )
+      }
+    }
+  
   return (
     <div className="container">
       <img src={header} height="200rem" width="1500rem"/>
       <Link className="create"  to="/recipe">Create recipe</Link>
       <SearchBar />
-     <br></br> 
-     <br></br> 
-     <br></br> 
-     <br></br> 
-      <div>
+    
+      <div className="optionscontainer">
+        <h4>Order by:</h4>
         <select onChange={handleSort}>
           <option>None</option>
-          <option value="Alpasc">Alphabetical asc</option>
-          <option value="Alpdesc">Alphabetical desc</option>
+          <option value="Alpasc">A-Z</option>
+          <option value="Alpdesc">Z-A</option>
           <option value="Scrasc">Score asc</option>
           <option value="Scrdesc">Score desc</option>
         </select>
-
+        <h4>Filter by:</h4>
         <select onChange={handleFilterChange}>
           <option value="all">All</option>
 
@@ -73,25 +98,10 @@ export default function Home() {
         </select>
       </div>
 
-      <div className="cardContainer">
-
-        {currentRecipes.map((recipe) => {
-          return (
-            
-            <div>
-              <Link to={"/home/" + recipe.rId}>
-                <Card
-                  name={recipe.name}
-                  image={recipe.image}
-                  diets={recipe.diets}
-                  id = {recipe.rId}
-                />
-              </Link>
-            </div>
-          )
-        })}
+      <div>
+        {handleRender()}
       </div>
-
+         
       <Paginate
         recipesPerPage={recipesPerPage}
         filteredRecipes={filteredRecipes.length}

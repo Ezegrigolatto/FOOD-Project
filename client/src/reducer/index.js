@@ -4,7 +4,7 @@ const initialState = {
   recipes: [],
   diets: [],
   filteredRecipes: [],
-  details: []
+  details: [],
 };
 export default function rootReducer(state = initialState, action) {
   switch (action.type) {

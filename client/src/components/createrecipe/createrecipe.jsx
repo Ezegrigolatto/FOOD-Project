@@ -66,17 +66,17 @@ export default function CreateRecipe() {
       alert("Your recipe has created succesfully")
       window.location.reload();
     } else {
-      alert("Please, complete all inputs");
+      alert("Please, check all inputs");
     }
   }
 
   function handleReload() {
-    let result = window.confirm(
+    const result = window.confirm(
       "You are about to cancel the creation of your recipe"
-    );
-    if (result) {
-      window.location.reload();
-    }
+      )
+      if (result === true) {
+        window.location.reload()
+      }
   }
 
   return (
@@ -84,9 +84,9 @@ export default function CreateRecipe() {
       <img className="circle" src={Circulo}></img>
       <Link to="/home" className="back">Go back</Link>
 
-      <div className="creatingCard">
-      <h1>Create Recipe</h1>
+      <h1 className="createTitle">Create Recipe</h1>
 
+      <div  className="creatingCard">
       <form>
         <div className="inputs">
           <label>Name</label>
@@ -122,8 +122,6 @@ export default function CreateRecipe() {
             value={recipe.score}
             onChange={handleChange}
           />
-        
-
         
           <label>Healthy:</label>
           <input
@@ -164,12 +162,12 @@ export default function CreateRecipe() {
             ))}
         </div>
         <div className="createbuttons">
-        <button type="submit" onClick={handleSubmit}>
+        <button className="createbutton" type="submit" onClick={handleSubmit}>
           Create!
         </button>
-      <button onClick={handleReload}>Discard </button>
       </div>
       </form>
+      <button className="createbutton" onClick={handleReload}>Discard </button>
       </div>
     </div>
   );

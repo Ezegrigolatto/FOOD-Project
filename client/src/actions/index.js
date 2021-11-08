@@ -1,27 +1,27 @@
 import axios from "axios";
 
 export function getFoods() {
-  return async function (dispatch) {
-    const response = await axios.get("http://localhost:3001/recipes");
-    
+  return function (dispatch) {
+    return axios.get("http://localhost:3001/recipes")
+    .then(( response ) =>
     dispatch({
       type: "GET_RECIPES",
       payload: response.data,
-    });
-  };
+    })
+    )}
 }
 
 export function getDiets() {
-  return async function (dispatch) {
-    const response = await axios.get("http://localhost:3001/types");
-    console.log(response.data);
-    dispatch({
+  return  function (dispatch) {
+    return axios.get("http://localhost:3001/types")
+   .then ((response) => {
+   dispatch ({
       type: "GET_DIETS",
       payload: response.data,
-    });
-  };
+     }
+  )})
 }
-
+}
 export function searchByName(payload){
   return async function (dispatch) {
     const response = await axios.get(`http://localhost:3001/recipes?name=${payload}`);
