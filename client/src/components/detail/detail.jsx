@@ -52,6 +52,19 @@ export default function Detail() {
     }
   }
   
+  function handleSteps(){
+    if (recipeDetails.instructions) {
+      return (
+<p className="steps"
+            dangerouslySetInnerHTML={{
+              __html: `${recipeDetails.instructions}`,
+            }}
+          ></p>)
+    }else{
+      return <p className="steps">No steps available.</p>
+    }
+  }
+
   return (
     
     <div className="container">
@@ -76,19 +89,10 @@ export default function Detail() {
           <div className="diets">
           <h2 >Diets</h2>
           <h4 className="arrdiets" >{recipeDetails.diets?.map((diet) => diet).join(", " )}. </h4>
-
-          
-
-
-
           </div>
           <h4 className="stepstitle"> Steps: </h4>
           <div className="stepscontainer">
-          <p className="steps"
-            dangerouslySetInnerHTML={{
-              __html: `${recipeDetails.instructions}`,
-            }}
-          ></p>
+          {handleSteps()}
           </div>
         </div>
       }

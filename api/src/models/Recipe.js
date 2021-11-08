@@ -16,7 +16,7 @@ module.exports = (sequelize) => {
     },
     resume: {
       type: DataTypes.TEXT,
-      allowNull: false,
+      allowNull: true,
     },
     score: { 
       type: DataTypes.REAL,

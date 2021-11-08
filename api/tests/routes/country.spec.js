@@ -21,4 +21,9 @@ describe('Recipe routes', () => {
       agent.get('/recipes').expect(200)
     );
   });
+  describe('GET /types', () => {
+    it('should get 200', () =>
+      agent.get('/types').expect(200)
+    );
+  });
 });
