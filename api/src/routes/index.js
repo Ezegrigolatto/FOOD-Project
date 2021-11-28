@@ -7,20 +7,15 @@ const axios = require("axios");
 
 const router = Router();
 
-const apiRecipes = () => {
-  return axios
-    .get(
+const apiRecipes =  () => {
+  return axios.get(
       `https://api.spoonacular.com/recipes/complexSearch?number=100&&apiKey=${APIKEY}&addRecipeInformation=true`
     )
 
-    .then((response) => {
+    .then((response)=>{
       const oneRecipeApi = response.data.results.map((r) => {
         return {
           name: r.title,
-          vegetarian: r.vegetarian,
-          vegan: r.vegan,
-          glutenFree: r.glutenFree,
-          dairyFree: r.dairyFree,
           score: r.spoonacularScore,
           healthy: r.healthScore,
           image: r.image,
@@ -32,8 +27,9 @@ const apiRecipes = () => {
         };
       });
       return oneRecipeApi;
-    });
-};
+    })
+    };
+
 const myRecipes = () => {
   return Recipe.findAll({
     include: {
@@ -54,47 +50,21 @@ const reqAllInfo = async () => {
   return allData;
 };
 
-
-/*router.get("/recipes", async (req, res, next) => {
-  try {
-    const { name } = req.query; //llega por query
-    let allRecipes = await reqAllInfo();
-    //si no llega nada por query, mando todas las recetas; sinó mando la que contenga el name
-    if (!name) {
-      res.status(200).send(allRecipes);
-    } else {
-      let recipeName = await allRecipes.filter((r) =>
-        r.name.toLowerCase().includes(name.toLowerCase())
-      );
-      //si no encontro resultados, mando este error
-      if (recipeName.length === 0) {
-        res.send([]);
-      } else {
-        //de lo contrario, muestro las respuestas
-        res.send(recipeName);
-      }*/
-
 router.get("/recipes", async (req, res) => {
-  const { name } = req.query; //llega por query
+  const { name } = req.query;
   let allRecipes = await reqAllInfo();
-
-  //si no llega nada por query, mando todas las recetas; sinó mando la que contenga el name
+  
   try {if (!name) {
     res.send(allRecipes);
   } else {
     let recipeName = await allRecipes.filter((r) =>
       r.name.toLowerCase().includes(name.toLowerCase())
     );
-    //si no encontro resultados, mando este error
     if (recipeName.length === 0) {
-      res.send("no se encontraron resultados");
+      res.send([]);
     } else {
-      //de lo contrario, muestro las respuestas
       res.status(200).send(recipeName);
-
     }
-  } catch (error) {
-    next(error);
   }
 } catch (error) {
     res.status(404).send(error);
@@ -178,6 +148,7 @@ router.get("/types", async (req, res, next) => {
 router.post("/recipe", async (req, res, next) => {
   try {
     const { name, score, resume, steps, healthy, diets } = req.body;
+
     let receta = await Recipe.create({
       name: name,
       resume: resume,
@@ -186,11 +157,19 @@ router.post("/recipe", async (req, res, next) => {
       steps: steps,
       recipediets: diets,
     });
+    
+    if(name && score && resume && steps && healthy){
+     
+  
     const diet = await Diet.findAll({ where: { name: diets } });
     receta.addDiets(diet);
     res.status(200).send();
-  } catch (err) {
-    next(err);
+  }
+  else{
+    res.status(400).send();
+  }
+  } catch (error) {
+    next(error);
   }
 });
 module.exports = router;

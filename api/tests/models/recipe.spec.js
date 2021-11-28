@@ -28,8 +28,8 @@ describe("Recipe model", () => {
           resume: "This is a recipe resume.",
           score: "16",
         })
-          .then(() => done())
-          .catch(() => done(new Error("It requires a valid score")));
+          .then(() => done()
+          .catch(() => done(new Error("It requires a valid score"))));
       });
       it("should work when its a valid score", (done) => {
         Recipe.create({
@@ -38,7 +38,7 @@ describe("Recipe model", () => {
           score: 10,
         })
           .then(() => done())
-          .catch(() => done(new Error("it should create a new recipe")));
+          .catch(() => done(new Error("it requires a valid score")));
       });
     });
   });

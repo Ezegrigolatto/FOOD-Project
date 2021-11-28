@@ -12,7 +12,7 @@ export default function CreateRecipe() {
   const [recipe, setRecipe] = useState({
     name: "",
     resume: "",
-    score: 0,
+    score: 10,
     healthy: 0,
     steps: "",
     diets: [],
@@ -31,6 +31,7 @@ export default function CreateRecipe() {
   }
 
   function handleChange(e) {
+    console.log(e.target.min)
     setRecipe({
       ...recipe,
       [e.target.name]: e.target.value,
@@ -81,7 +82,7 @@ export default function CreateRecipe() {
 
   return (
     <div className="container">
-      <img className="circle" src={Circulo}></img>
+      <img className="circle" src={Circulo} alt="circle"></img>
       <Link to="/home" className="back">Go back</Link>
 
       <h1 className="createTitle">Create Recipe</h1>
@@ -172,3 +173,4 @@ export default function CreateRecipe() {
     </div>
   );
 }
+

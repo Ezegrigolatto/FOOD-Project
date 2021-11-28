@@ -6,8 +6,20 @@ const { Recipe, conn } = require('../../src/db.js');
 
 const agent = session(app);
 const recipe = {
-  name: 'Milanea a la napolitana',
+  name: 'Milanesa a la napolitana',
 };
+
+
+const otherRecipe = { 
+  name:"Fideos",
+  resume:"sirve para acompañar a casi cualquier plato", 
+  score:20,
+  healthy: 15 , 
+  steps:"pasos",
+  diets:["vegan", "ketogenic"]
+};
+
+const otherRecipe2 = {}
 
 describe('Recipe routes', () => {
   before(() => conn.authenticate()
@@ -26,4 +38,11 @@ describe('Recipe routes', () => {
       agent.get('/types').expect(200)
     );
   });
+  describe('POST ', function(){
+    it('Should return 200', function(done){
+        agent.post('/recipe')
+            .send(otherRecipe)
+            .expect(200, done)
+    });
+});
 });

@@ -23,12 +23,17 @@ export function getDiets() {
 }
 }
 export function searchByName(payload){
-  return async function (dispatch) {
-    const response = await axios.get(`http://localhost:3001/recipes?name=${payload}`);
+  return  function (dispatch) {
+    return  axios.get(`http://localhost:3001/recipes?name=${payload}`)
+    .then((response)=>{
     dispatch({
       type: "SEARCH_BY_NAME",
       payload: response.data,
     });
+  })
+  .catch((err) => {
+    console.log(err)
+  })
   };
 }
 

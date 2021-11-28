@@ -1,5 +1,3 @@
-import { orderRecipes } from "../actions";
-
 const initialState = {
   recipes: [],
   diets: [],
@@ -39,8 +37,8 @@ export default function rootReducer(state = initialState, action) {
           filteredRecipes: allRecipes,
         }}else{
         const filteredRecipes = allRecipes.filter((recipe) =>{
-          return recipe.diets.find((recipe)=>{
-            return recipe.name === action.payload
+          return recipe.diets.find((diet)=>{
+            return diet.name === action.payload
           })
         })
         return {

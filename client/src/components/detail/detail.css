@@ -57,12 +57,24 @@
     justify-content: center;
     height: 9rem;
     position: relative;
-    top: 2rem;
+    
 }
+
+.dietstitle{
+    font-family: GrandHotel;
+    font-size:3rem;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    position: relative;
+    top: 8rem;
+}
+
 
 .arrdiets{
     position: relative;
-    top: -4rem;
+    top: -1rem;
 }
 .stepstitle{
     font-family: GrandHotel;

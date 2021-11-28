@@ -1,7 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
 import "./landingPage.css";
-import banquete from "../../assets/banquete.jpg"
 import fondolanding from "../../assets/fondolanding.jpg"
 import {Link} from "react-router-dom";
 import { useDispatch } from "react-redux";

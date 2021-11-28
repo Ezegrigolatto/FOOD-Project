@@ -13,12 +13,11 @@ import header from "../../assets/header.jpg"
 
 export default function Home() {
   const dispatch = useDispatch();
-  const allRecipes = useSelector((state) => state.recipes);
   const allDiets = useSelector((state) => state.diets);
   const filteredRecipes = useSelector((state) => state.filteredRecipes);
 
   const [thisPage, setThisPage] = useState(1);
-  const [recipesPerPage, setRecipesPerPage] = useState(9);
+  const recipesPerPage = 9;
   const LastRecipe = thisPage * recipesPerPage;
   const FirstRecipe = LastRecipe - recipesPerPage;
   const currentRecipes = filteredRecipes.slice(FirstRecipe, LastRecipe);
@@ -75,10 +74,9 @@ export default function Home() {
   
   return (
     <div className="container">
-      <img src={header} height="200rem" width="1500rem"/>
+      <img src={header} height="200rem" width="100%" alt="header"/>
       <Link className="create"  to="/recipe">Create recipe</Link>
       <SearchBar />
-    
       <div className="optionscontainer">
         <h4>Order by:</h4>
         <select onChange={handleSort}>
