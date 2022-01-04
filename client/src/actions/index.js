@@ -73,3 +73,9 @@ export function getDetails(payload){
     });
   };
 }
+
+export function resetDetails(){
+  return {
+    type: "RESET_DETAILS",
+  }
+}

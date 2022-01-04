@@ -9,7 +9,7 @@ const router = Router();
 
 const apiRecipes =  () => {
   return axios.get(
-      `https://api.spoonacular.com/recipes/complexSearch?number=100&&apiKey=${APIKEY}&addRecipeInformation=true`
+      `https://api.spoonacular.com/recipes/complexSearch?number=50&&apiKey=${APIKEY}&addRecipeInformation=true`
     )
 
     .then((response)=>{
@@ -163,7 +163,7 @@ router.post("/recipe", async (req, res, next) => {
   
     const diet = await Diet.findAll({ where: { name: diets } });
     receta.addDiets(diet);
-    res.status(200).send();
+    res.status(200).send("se creo con exito");
   }
   else{
     res.status(400).send();

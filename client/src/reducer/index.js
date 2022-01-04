@@ -104,6 +104,11 @@ export default function rootReducer(state = initialState, action) {
           ...state,
           details: action.payload, 
         }; 
+      case "RESET_DETAILS":
+        return {
+          ...state,
+          details: [],
+        };
       default:
         return state;
     }

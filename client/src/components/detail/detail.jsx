@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { getDetails } from "../../actions";
+import { getDetails, resetDetails } from "../../actions";
 import "./detail.css";
 import A from "../../assets/0a17.jpg";
 import B from "../../assets/18a33.jpg";
@@ -24,6 +24,10 @@ export default function Detail() {
   useEffect(() => {
     dispatch(getDetails(id));
   }, []);
+
+  useEffect(() => {
+    dispatch(resetDetails());
+  }, [Detail]);
 
   function score() {
     if (recipeDetails.spoonacularScore <= 17) {
@@ -81,13 +85,13 @@ export default function Detail() {
 
 
   return (
-    <div className="container">
+    <div className="detailcontainer">
       <img className="circle" src={Circulo} alt="title"></img>
       <Link className="back" to="/home">
         Go back
       </Link>
 
-      {
+      { recipeDetails.image?
         <div>
           <h2 className="title">{recipeDetails.title}</h2>
           <div className="imgResumeContainer">
@@ -128,6 +132,7 @@ export default function Detail() {
           <h4 className="stepstitle"> Steps: </h4>
           <div className="stepscontainer">{handleSteps()}</div>
         </div>
+        : <div className="spinner"></div>
       }
     </div>
   );

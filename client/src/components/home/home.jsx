@@ -17,7 +17,7 @@ export default function Home() {
   const filteredRecipes = useSelector((state) => state.filteredRecipes);
 
   const [thisPage, setThisPage] = useState(1);
-  const recipesPerPage = 9;
+  const recipesPerPage = 6;
   const LastRecipe = thisPage * recipesPerPage;
   const FirstRecipe = LastRecipe - recipesPerPage;
   const currentRecipes = filteredRecipes.slice(FirstRecipe, LastRecipe);
@@ -71,7 +71,7 @@ export default function Home() {
         )
       }
     }
-  
+    console.log(currentRecipes)
   return (
     <div className="container">
       <img src={header} height="200rem" width="100%" alt="header"/>
@@ -89,7 +89,6 @@ export default function Home() {
         <h4>Filter by:</h4>
         <select onChange={handleFilterChange}>
           <option value="all">All</option>
-
           {allDiets.map((diet) => {
             return <option value={diet.name}>{diet.name}</option>;
           })}
@@ -97,7 +96,7 @@ export default function Home() {
       </div>
 
       <div>
-        {handleRender()}
+        { currentRecipes.length>0? handleRender(): <div className="spinner"></div>}
       </div>
          
       <Paginate
